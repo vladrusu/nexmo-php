@@ -353,7 +353,7 @@ class Client
         $userAgent = [];
 
         // Library name
-        $userAgent[] = 'nexmo-php/'.self::VERSION;
+        $userAgent[] = 'nexmo-php/'.$this->getVersion();
 
         // Language name
         $userAgent[] = 'php/'.PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;
@@ -439,5 +439,10 @@ class Client
         $isRecordingUrl = strpos($path, '/v1/files') === 0;
 
         return $isCallEndpoint || $isRecordingUrl;
+    }
+
+    protected function getVersion()
+    {
+        return \PackageVersions\Versions::getVersion('nexmo/client');
     }
 }
